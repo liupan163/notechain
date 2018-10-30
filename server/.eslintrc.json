@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": "standard",
+  "rules": {
+    "indent": [0, 4, { "SwitchCase": 1 }],
+    "arrow-parens": 0,
+    "generator-star-spacing": 0,
+    "quotes": [0, "single"],
+    "semi":"off",
+    "space-before-function-paren":"off",
+    "no-use-before-define":"off"
+  },
+  "env": {
+    "mocha": true
+  }
+}
