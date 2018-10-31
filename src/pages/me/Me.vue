@@ -16,10 +16,6 @@
     <div class="listviewwrap">
       <list-view :data="fakeListData"></list-view>
     </div>
-    <!--<div class="listwrap">-->
-    <!--<button v-if='userinfo.openId' @click='scanBook' class='btn'>添加图书</button>-->
-    <!--<p>scan click</p>-->
-    <!--</div>-->
   </div>
 </template>
 <script>
@@ -30,6 +26,9 @@
   import ListView from "@/components/ListView";
 
   export default {
+    mounted(){
+      //
+    },
     components: {
       YearProgress,
       ListView
@@ -43,16 +42,21 @@
       };
     },
     methods: {
-
+      login(){
+        console.log("method login res");
+        wx.login({
+          success(res){
+            console.log("method login res"+res);
+          }
+        })
+      }
     },
     onShow() {
-      // console.log(123)
       let userinfo = wx.getStorageSync("userinfo");
-      // console.log([userinfo])
+      console.log([userinfo])
       if (userinfo) {
         this.userinfo = userinfo;
       }
-      // console.log(this.userinfo)
     }
   };
 </script>

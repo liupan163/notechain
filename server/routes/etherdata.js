@@ -6,9 +6,9 @@ var ethabi = require("web3-eth-abi");
 
 class EtherData {
   constructor() {
-    this.contractAddress = "0x4821f5c31dc356119d80c062c825a2f9c0ff8eaa";
+    this.contractAddress = "0xfb2c2cb5509195111435c9fda305a8350b68760a";
     this.gasPrice = "0x3B9ACA00";
-    this.web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/oOYCD7wiWl5A2e65OaEZ'));
+    this.web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/v3/8d21395d2a73485096ca061252314e78'));
     this.abi = JSON.parse(fs.readFileSync("./CloudNoteService_sol_CloudNoteService.abi", "utf-8").toString());
     this.contract = this.web3.eth.contract(this.abi).at(this.contractAddress);
   }
@@ -20,7 +20,8 @@ class EtherData {
       queryTransactionStatus
        */
   getNonce() {
-    var nonce = this.web3.eth.getTransactionCount("0xe4ea318e4456A821E467658ec19297D727Cb8bF5");
+    // 调用地址
+    var nonce = this.web3.eth.getTransactionCount("0xc0C4824527fFB27a51034CeA1e37840ED69A5f1e");
     return nonce;
   }
 
@@ -40,7 +41,7 @@ class EtherData {
       data: notefun
     };
     var tx = new Tx(rawTx);
-    const privateKey = new Buffer("549c22cea5cc8a7858d0f2ccc9600bc3cad9c0c6d168110d55e056f3af3e575d", "hex");
+    const privateKey = new Buffer("2BA807775231B37E3D92CA76AD071E9D1B7CCDB8752B9B738174EA2E75FC0D4C", "hex");
     tx.sign(privateKey);
     var serializedTx = tx.serialize();
     return this.web3.eth.sendRawTransaction("0x" + serializedTx.toString("hex"));
