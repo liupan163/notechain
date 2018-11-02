@@ -76,10 +76,10 @@
     opacity: 0.8;
   }
 
-  .show-author > .get-userinfo {
+  .get-userinfo {
     color: #fff;
     background-color: #f00;
-    border-radius: 10 rpx;
+    border-radius: 15px;
     top: 50%;
     margin-top: 70%;
   }
