@@ -1,7 +1,14 @@
 <template>
-  <div class="page">
-      <button type="default" class='page_button new_note' @click='addBtnClick'>新增内容</button>
-      <button type="default" class='page_button show_list' @click='showListBtnClick'>查看列表</button>
+  <div>
+    <div class="page">
+      <button class='new_button' @click='addBtnClick'>新增内容</button>
+      <view type="default" class='show_list_title' @click='showListBtnClick'>全部记录>></view>
+      <view v-for="item in noteList" :key="item" class='list-item' v-show="noteList.length>0"
+            @click="compileDetail(item)">
+        <view class='list-title'>{{item.title}}</view>
+        <view class="list-date">{{item.timestamp}}</view>
+      </view>
+    </div>
   </div>
 </template>
 <script>
@@ -12,13 +19,13 @@
   export default {
     data() {
       return {
-        comments: [],
         userinfo: {},
         bookid: "",
         info: {},
         comment: "",
         location: "",
-        phone: ""
+        phone: "",
+        noteList: []
       };
     },
     computed: {},
@@ -62,20 +69,26 @@
       wx.getUserInfo({
         success: res => {
           //app.globalData.userInfo = res.userInfo
+          console.log("wx.getUserInfo res=", res);
           const userInfo = res.userInfo;
           console.log("wx.getUserInfo", userInfo);
-          console.log("nickName ", userInfo.nickName );
-          console.log("avatarUrl ", userInfo.avatarUrl);
-          console.log("gender ",userInfo.gender);
-          console.log("province ", userInfo.province);
-          console.log("city",userInfo.city);
-          console.log("country ", userInfo.country);
+          console.log("nickName ", userInfo.nickName);
           config.userinfo.nickName = res.userInfo.nickName;
           config.userinfo.hasUserInfo = true;
-          // this.setData({
-          //   userInfo: res.userInfo,
-          //   hasUserInfo: true
-          // })
+        }
+      });
+      console.log(" config.userinfo.nickName=>" + config.userinfo.nickName + config.userinfo.hasUserInfo);
+      wx.request({
+        url: config.host + "/getList",
+        data: {
+          nickName: config.userInfo.nickName
+        },
+        success: (res) => {
+          res.data.forEach((x) => {
+            x.timestamp = new Date(parseInt(x.timestamp)).toLocaleString().replace(/:\d{1,2}$/, " ");
+          });
+          this.noteList = res.data;
+          //console.log("this.res.getList data=>", res.data);
         }
       });
       //   }
@@ -83,27 +96,53 @@
   };
 </script>
 <style lang='scss'>
-  .page{
-    background-color: #1571FA;
+  .page {
     height: 100%;
+    position: absolute;
+    width: 100%;
+    background-color: rgba(220, 218, 255, 1);
   }
-  .page_button {
-    width: 98%;
-    margin-left: 1%;
-    margin-top: 30 rpx;
-    background-color: #1571FA;
+
+  .new_button {
+    position: relative;
+    width: 61.8%;
     color: white;
-    height: 150rpx;
     text-align: center;
-    line-height: 150rpx;
-    border-radius: 30rpx;
+    margin-top: 50px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 4px 4px 4px 4px;
+    background-color: rgba(166, 84, 251, 1);
+    color: rgba(255, 255, 255, 1);
+    font-size: 24px;
+    font-family: Arial;
+    border: 1px solid rgba(255, 255, 255, 0);
   }
 
-  .new_note {
-    background-color: green;
+  .show_list_title {
+    position: relative;
+    margin-right: 13px;
+    float: right;
+    margin-top: 35px;
+    color: rgba(102, 102, 102, 1);
+    font-size: 14px;
+    text-align: left;
+    font-family: PingFangSC-regular;
   }
 
-  .show_list {
-    background-color: yellowgreen;
+  .list-item {
+    position: relative;
+    width: 96%;
+    height: 100px;
+    margin-left: 2%;
+    margin-right: 1%;
+    border-radius: 10 rpx;
+    overflow: hidden;
+    margin-top: 5px;
+  }
+
+  .list_content {
+    width: 30%;
+
   }
 </style>

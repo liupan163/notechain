@@ -1,7 +1,7 @@
 import config from "../config";
 import { showModal } from "../util";
 
-const formatTime = date => {
+export function formatTime(date) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -10,24 +10,25 @@ const formatTime = date => {
   const second = date.getSeconds();
 
   return [year, month, day].map(formatNumber).join("/") + " " + [hour, minute, second].map(formatNumber).join(":");
-};
+}
 
 const formatNumber = n => {
   n = n.toString();
   return n[1] ? n : "0" + n;
 };
 
-module.exports = {
-  formatTime: formatTime
-};
-
+// module.exports = {
+//   formatTime: formatTime
+// };
 
 export function get(url, data) {
   return request(url, "get", data);
 }
+
 export function post(url, data) {
   return request(url, "post", data);
 }
+
 function request(url, method, data, header = {}) {
   return new Promise((resolve, reject) => {
     wx.request({
