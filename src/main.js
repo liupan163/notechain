@@ -22,8 +22,8 @@ export default {
         {
           pagePath: "pages/index/main",
           text: "Index",
-          iconPath: "static/img/me.png",
-          selectedIconPath: "static/img/me-active.png"
+          iconPath: "static/img/list.png",
+          selectedIconPath: "static/img/list-active.png"
         },
         {
           pagePath: "pages/me/main",
