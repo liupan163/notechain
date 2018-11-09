@@ -110,7 +110,6 @@
 
   .content_input {
     width: 100%;
-    border: 1px solid #1571FA;
     height: 343px;
     margin-top: 4px;
     border-radius: 2px;

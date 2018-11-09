@@ -10,6 +10,9 @@
       <text class="note-text">全部笔记</text>
     </div>
     <div class="divide-line-horizon"></div>
+    <div class="qaitem">
+      <span class="common-qa">常见问题</span><img class="directionarrow" src="../../../static/img/other-active.png"/>
+    </div>
   </div>
 </template>
 <script>
@@ -19,8 +22,7 @@
     mounted() {
       //
     },
-    components: {
-    },
+    components: {},
     data() {
       return {
         userinfo: {
@@ -92,7 +94,7 @@
   .note-box {
     position: relative;
     width: 100%;
-    height: 70px;
+    height: 68px;
     margin-left: 20px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -100,7 +102,7 @@
 
   .note-number {
     position: relative;
-    left:16px;
+    left: 16px;
     top: 0px;
     width: 64px;
     height: 32px;
@@ -125,10 +127,43 @@
     font-family: PingFangSC-regular;
     background-color: rgba(220, 218, 255, 1);
   }
-  .divide-line-horizon{
+
+  .divide-line-horizon {
     width: 96%;
-    height: 2px;
-    background: black;
+    height: 1px;
+    background: #7865FF 100%;
     margin-left: 2%;
+  }
+
+  .qaitem {
+    position: relative;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 36px;
+    height: 45px;
+    background-color: aliceblue;
+    text-align: left;
+    border-radius: 3px;
+  }
+
+  .common-qa {
+    display: inline-block;
+    width: 64px;
+    height: 22px;
+    color: rgba(45, 45, 45, 1);
+    font-size: 16px;
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 6px;
+    font-family: PingFangSC-regular;
+  }
+
+  .directionarrow {
+    position: absolute;
+    height: 31px;
+    width: 31px;
+    right: 0px;
+    top: 0px;
+    margin-top: 5px;
   }
 </style>
