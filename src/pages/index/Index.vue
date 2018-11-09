@@ -66,6 +66,11 @@
       //     }
       //   } else {
       //     // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.login({
+        success: res => {
+          console.log("res.code",res.code)
+        }
+      });
       wx.getUserInfo({
         success: res => {
           //app.globalData.userInfo = res.userInfo

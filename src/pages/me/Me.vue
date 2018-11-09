@@ -11,7 +11,7 @@
     </div>
     <div class="divide-line-horizon"></div>
     <div class="qaitem">
-      <span class="common-qa">常见问题</span><img class="directionarrow" src="../../../static/img/other-active.png"/>
+      <span class="common-qa">常见问题</span><img class="directionarrow" src="../../../static/img/anchor.png"/>
     </div>
   </div>
 </template>
@@ -160,10 +160,9 @@
 
   .directionarrow {
     position: absolute;
-    height: 31px;
-    width: 31px;
-    right: 0px;
-    top: 0px;
-    margin-top: 5px;
+    height: 20px;
+    width: 10px;
+    right: 5px;
+    top: 10px;
   }
 </style>
