@@ -1,6 +1,6 @@
-# mpvue-sailing
-
 > A Mpvue project
+微信小程序上的一个记事本应用。
+功能特点->往记事本上存储的信息都会被存储到以太坊的测试链上。
 
 ## Build Setup
 
